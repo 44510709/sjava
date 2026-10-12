@@ -10,7 +10,6 @@ import org.dromara.system.domain.SysClient;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.List;
 
 
 /**
@@ -54,11 +53,6 @@ public class SysClientVo implements Serializable {
     /**
      * 授权类型
      */
-    private List<String> grantTypeList;
-
-    /**
-     * 授权类型
-     */
     @ExcelProperty(value = "授权类型")
     private String grantType;
 
@@ -74,20 +68,10 @@ public class SysClientVo implements Serializable {
     private String accessPath;
 
     /**
-     * 允许访问路径列表
-     */
-    private List<String> accessPathList;
-
-    /**
      * IP白名单
      */
     @ExcelProperty(value = "IP白名单")
     private String ipWhitelist;
-
-    /**
-     * IP白名单列表
-     */
-    private List<String> ipWhitelistList;
 
     /**
      * token活跃超时时间
