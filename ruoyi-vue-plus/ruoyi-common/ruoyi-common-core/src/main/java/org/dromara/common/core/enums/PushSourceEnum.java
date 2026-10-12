@@ -23,11 +23,6 @@ public enum PushSourceEnum {
     NOTICE("notice"),
 
     /**
-     * 工作流
-     */
-    WORKFLOW("workflow"),
-
-    /**
      * 大模型
      */
     LLM("llm"),

@@ -27,9 +27,4 @@ public class SysMessageBoxVo implements Serializable {
      * 通知公告消息
      */
     private List<SysMessageVo> noticeList = new ArrayList<>();
-
-    /**
-     * 工作流消息
-     */
-    private List<SysMessageVo> workflowList = new ArrayList<>();
 }

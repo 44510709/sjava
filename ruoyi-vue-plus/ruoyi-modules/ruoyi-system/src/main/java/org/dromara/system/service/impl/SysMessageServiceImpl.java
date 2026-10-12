@@ -49,11 +49,6 @@ public class SysMessageServiceImpl implements ISysMessageService, MessageService
     private static final String CATEGORY_NOTICE = "notice";
 
     /**
-     * 消息分类：工作流
-     */
-    private static final String CATEGORY_WORKFLOW = "workflow";
-
-    /**
      * 消息盒子每页展示最大条数
      */
     private static final int BOX_LIMIT = 100;
@@ -77,7 +72,6 @@ public class SysMessageServiceImpl implements ISysMessageService, MessageService
         SysMessageBoxVo box = new SysMessageBoxVo();
         box.setSystemList(selectMessageList(CATEGORY_SYSTEM, userId));
         box.setNoticeList(selectMessageList(CATEGORY_NOTICE, userId));
-        box.setWorkflowList(selectMessageList(CATEGORY_WORKFLOW, userId));
         return box;
     }
 
@@ -279,15 +273,12 @@ public class SysMessageServiceImpl implements ISysMessageService, MessageService
      * 根据消息类型/来源自动解析消息分类
      *
      * @param payload 消息推送体
-     * @return 消息分类（system/notice/workflow）
+     * @return 消息分类（system/notice）
      */
     private String resolveCategory(PushPayloadDTO payload) {
         if (StringUtils.equalsAny(payload.getType(), PushTypeEnum.NOTICE.getType())
             || StringUtils.equalsAny(payload.getSource(), PushSourceEnum.NOTICE.getSource())) {
             return CATEGORY_NOTICE;
-        }
-        if (StringUtils.equalsAny(payload.getSource(), PushSourceEnum.WORKFLOW.getSource())) {
-            return CATEGORY_WORKFLOW;
         }
         return CATEGORY_SYSTEM;
     }
@@ -301,7 +292,6 @@ public class SysMessageServiceImpl implements ISysMessageService, MessageService
     private String resolveTitle(PushPayloadDTO payload) {
         return switch (resolveCategory(payload)) {
             case CATEGORY_NOTICE -> "通知公告消息";
-            case CATEGORY_WORKFLOW -> "工作流消息";
             default -> "系统消息";
         };
     }

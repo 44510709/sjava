@@ -959,7 +959,7 @@ create index if not exists idx_sys_message_category_time on sys_message (categor
 
 comment on table sys_message                   is '消息记录表';
 comment on column sys_message.message_id       is '消息ID';
-comment on column sys_message.category         is '消息分组(system/notice/workflow)';
+comment on column sys_message.category         is '消息分组(system/notice)';
 comment on column sys_message.type             is '消息类型';
 comment on column sys_message.source           is '消息来源';
 comment on column sys_message.title            is '标题';
