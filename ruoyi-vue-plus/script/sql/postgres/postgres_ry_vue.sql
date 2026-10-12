@@ -830,7 +830,6 @@ insert into sys_dict_data values(1761600000000000030, 0, '密码认证', 'passwo
 insert into sys_dict_data values(1761600000000000031, 0, '短信认证', 'sms', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, '短信认证');
 insert into sys_dict_data values(1761600000000000032, 0, '邮件认证', 'email', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, '邮件认证');
 insert into sys_dict_data values(1761600000000000033, 0, '小程序认证', 'xcx', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, '小程序认证');
-insert into sys_dict_data values(1761600000000000034, 0, '三方登录认证', 'social', 'sys_grant_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, '三方登录认证');
 insert into sys_dict_data values(1761600000000000035, 0, 'PC', 'pc', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, 'PC');
 insert into sys_dict_data values(1761600000000000036, 0, '安卓', 'android', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, '安卓');
 insert into sys_dict_data values(1761600000000000037, 0, 'iOS', 'ios', 'sys_device_type', '', 'default', 'N', 1761000000000000103, 1761100000000000001, now(), null, null, 'iOS');
@@ -1230,8 +1229,8 @@ comment on column sys_client.create_time            is '创建时间';
 comment on column sys_client.update_by              is '更新者';
 comment on column sys_client.update_time            is '更新时间';
 
-insert into sys_client values (1762000000000000001, 'e5cd7e4891bf95d1d19206ce24a7b32e', 'pc', 'pc123', 'password,social', 'pc', '', '', 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, now(), 1761100000000000001, now());
-insert into sys_client values (1762000000000000002, '428a8310cd442757ae699df5d894f051', 'app', 'app123', 'password,sms,social', 'android', '/app/**', '', 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, now(), 1761100000000000001, now());
+insert into sys_client values (1762000000000000001, 'e5cd7e4891bf95d1d19206ce24a7b32e', 'pc', 'pc123', 'password', 'pc', '', '', 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, now(), 1761100000000000001, now());
+insert into sys_client values (1762000000000000002, '428a8310cd442757ae699df5d894f051', 'app', 'app123', 'password,sms', 'android', '/app/**', '', 1800, 604800, 0, 0, 1761000000000000103, 1761100000000000001, now(), 1761100000000000001, now());
 
 create table if not exists test_demo
 (

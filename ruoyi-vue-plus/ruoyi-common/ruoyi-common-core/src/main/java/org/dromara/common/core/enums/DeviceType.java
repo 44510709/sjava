@@ -25,12 +25,7 @@ public enum DeviceType {
     /**
      * 小程序端
      */
-    XCX("xcx"),
-
-    /**
-     * 第三方社交登录平台
-     */
-    SOCIAL("social");
+    XCX("xcx");
 
     /**
      * 设备标识

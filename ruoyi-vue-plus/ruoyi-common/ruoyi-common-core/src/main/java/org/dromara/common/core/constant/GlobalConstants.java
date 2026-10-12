@@ -26,9 +26,4 @@ public interface GlobalConstants {
      * 限流 redis key
      */
     String RATE_LIMIT_KEY = GLOBAL_REDIS_KEY + "rate_limit:";
-
-    /**
-     * 三方认证 redis key
-     */
-    String SOCIAL_AUTH_CODE_KEY = GLOBAL_REDIS_KEY + "social_auth_codes:";
 }

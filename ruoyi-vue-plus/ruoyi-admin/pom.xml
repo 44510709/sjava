@@ -52,10 +52,10 @@
             <artifactId>ruoyi-common-doc</artifactId>
         </dependency>
 
-        <!-- 授权认证 -->
+        <!-- 微信小程序登录客户端（XcxAuthStrategy 直接依赖） -->
         <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-common-social</artifactId>
+            <groupId>io.github.windtool</groupId>
+            <artifactId>JustAuth</artifactId>
         </dependency>
 
         <!-- 邮件服务 -->
