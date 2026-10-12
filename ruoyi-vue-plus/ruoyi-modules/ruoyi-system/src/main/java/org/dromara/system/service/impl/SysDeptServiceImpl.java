@@ -1,6 +1,5 @@
 package org.dromara.system.service.impl;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.tree.Tree;
@@ -15,7 +14,6 @@ import org.dromara.common.mybatis.core.query.LambdaQueryBuilder;
 import org.dromara.common.mybatis.core.query.QueryBuilder;
 import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.system.api.DeptService;
-import org.dromara.system.api.domain.DeptDTO;
 import org.dromara.system.domain.SysDept;
 import org.dromara.system.domain.SysRole;
 import org.dromara.system.domain.bo.SysDeptBo;
@@ -153,31 +151,6 @@ public class SysDeptServiceImpl implements ISysDeptService, DeptService {
         return StringUtils.joinComma(list);
     }
 
-    /**
-     * 根据部门ID查询部门负责人
-     *
-     * @param deptId 部门ID，用于指定需要查询的部门
-     * @return 返回该部门的负责人ID
-     */
-    @Override
-    public Long selectDeptLeaderById(Long deptId) {
-        SysDeptVo vo = SpringUtils.getAopProxy(this).selectDeptById(deptId);
-        return ObjectUtil.isNull(vo) ? null : vo.getLeader();
-    }
-
-    /**
-     * 查询部门
-     *
-     * @return 部门列表
-     */
-    @Override
-    public List<DeptDTO> selectDeptsByList() {
-        List<SysDeptVo> list = deptMapper.selectDeptList(deptMapper.lambda()
-            .select(SysDept::getDeptId, SysDept::getDeptName, SysDept::getParentId)
-            .eq(SysDept::getStatus, SystemConstants.NORMAL)
-            .build());
-        return BeanUtil.copyToList(list, DeptDTO.class);
-    }
     /**
      * 校验部门是否有数据权限
      *
