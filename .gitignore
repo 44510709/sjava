@@ -39,7 +39,6 @@ out/
 .env
 .env.local
 application-local.yml
-application-dev.yml
 application-prod.yml
 application-test.yml
 nohup.out
@@ -61,6 +60,6 @@ pnpm-debug.log*
 # 学习记忆文件本身不进忽略列表，正常提交。
 # 如果未来出现不希望提交的本地草稿，放到 docs/learning/.draft/ 下再单独忽略。
 
-# ===== 本地 clone 的外部项目（不进版本控制）=====
-ruoyi-vue-plus/
-plus-ui/
+# ===== 本地 clone 的外部项目 =====
+# ruoyi-vue-plus/ 已经从 sjava 仓库追踪（你确认 A 方向）
+# plus-ui/ 仍然不进 sjava 仓库（在独立 s-vue 仓）
