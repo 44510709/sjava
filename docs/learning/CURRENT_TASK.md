@@ -26,7 +26,7 @@
 3. ✅ 创建长期 / 训练 / 任务类文件：`PROJECT_OVERVIEW` / `LEARNING_PROFILE` / `TRAINING_PROTOCOL` / `ROADMAP` / `CURRENT_TASK` / `SESSION_LOG`。
 4. ✅ 移动 `PROJECT_MAP` / `PROJECT_STATE` 到 `docs/`。
 5. ✅ 删除旧 `NEXT_STEP.md`。
-6. 🔄 Git 提交本次改造。
+6. ✅ Git 提交本次改造（commit `e76223f`）。
 7. ⏳ 等用户做新会话恢复测试，确认机制生效。
 
 ### 已确认事实（带证据）
@@ -80,7 +80,7 @@
 | 当前任务文件统一为 `CURRENT_TASK.md` | ✅ |
 | 学习档案（LEARNING_PROFILE / TRAINING_PROTOCOL / ROADMAP）建立 | ✅ |
 | 会话交接记录（SESSION_LOG）建立 | ✅ |
-| Git 提交完整、可回滚 | ⏳ 待执行 |
+| Git 提交完整、可回滚 | ✅ |
 
 **全部 ✅ 才能把"建立控制系统"任务标记为完成。**
 

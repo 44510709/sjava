@@ -72,8 +72,8 @@
 - ✅ 创建 `docs/learning/ROADMAP.md`
 - ✅ 创建 `docs/learning/CURRENT_TASK.md`
 - ✅ 创建 `docs/learning/SESSION_LOG.md`（本文件）
-- ⏳ 升级 `PROGRESS.md` 与 `DECISIONS.md`（进行中）
-- ⏳ Git 提交本次改造（待执行）
+- ✅ 升级 `PROGRESS.md` 与 `DECISIONS.md`
+- ✅ Git 提交本次改造（commit `e76223f`）
 
 **用户掌握情况**：
 - 已知三类记忆的差别（稳定 / 项目事实 / 动态）
@@ -90,7 +90,7 @@
 2. 用户确认工作流偏好（CLI + IDE？纯 CLI？纯 IDE？）
 3. 用户决定是否 clone sjava
 
-**验收状态**：⏳ 进行中（剩余 Git 提交与测试）
+**验收状态**：✅ 已完成（V2 控制系统建立）— **下一步等用户做恢复测试**
 
 ---
 
