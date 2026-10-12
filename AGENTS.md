@@ -64,7 +64,7 @@
 6. `docs/learning/ROADMAP.md`（学习路线）
 7. `docs/learning/PROGRESS.md`（已完成任务与能力掌握）
 8. `docs/learning/CURRENT_TASK.md`（当前任务）
-9. 与当前任务相关的：`docs/learning/ERROR_LOG.md` / `DECISIONS.md` / `SESSION_LOG.md`
+9. 与当前任务相关的：`docs/learning/ERROR_LOG.md`（按需）
 10. 必要时再读实际源代码和配置文件。
 
 读取后必须确认：
@@ -201,10 +201,8 @@
 任务结束时，根据实际情况更新：
 
 - `PROGRESS.md`：长期进度和能力掌握情况。
-- `CURRENT_TASK.md`：当前任务及下一步。
-- `SESSION_LOG.md`：本次会话交接摘要。
-- `ERROR_LOG.md`：新发现的问题。
-- `DECISIONS.md`：经过用户确认的新决策。
+- `CURRENT_TASK.md`：当前任务 + 上次会话交接摘要。
+- `ERROR_LOG.md`：新发现的问题（按需）。
 
 只有实际发生变化时，才更新项目结构和状态文档。
 
@@ -214,7 +212,7 @@
 - 不得把推测写成结论
 - 不得擅自覆盖重要的用户决策
 
-按记忆类型维护（见 `DECISIONS.md`）：
+按记忆类型维护：
 
 | 类型 | 内容 | 更新方式 |
 |---|---|---|
