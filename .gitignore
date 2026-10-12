@@ -31,6 +31,9 @@ out/
 # ===== macOS =====
 .DS_Store
 
+# ===== Claude Code 本地状态（不进版本控制）=====
+.claude/
+
 # ===== 运行环境与敏感配置 =====
 *.env
 .env
