@@ -20,7 +20,7 @@
         <module>ruoyi-gen</module>
         <module>ruoyi-job</module>
         <module>ruoyi-system</module>
-        <module>ruoyi-workflow</module>
+        <!--  ruoyi-workflow 已移除：切片 #1  -->
         <module>ruoyi-ai</module>
     </modules>
 

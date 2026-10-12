@@ -101,10 +101,7 @@
         </dependency>
 
         <!--  工作流模块  -->
-        <dependency>
-            <groupId>org.dromara</groupId>
-            <artifactId>ruoyi-workflow</artifactId>
-        </dependency>
+        <!-- workflow 模块已移除（#1 切片）-->
 
         <!-- Spring Boot Admin 客户端 -->
         <dependency>

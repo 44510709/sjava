@@ -452,12 +452,7 @@
                 <version>${revision}</version>
             </dependency>
 
-            <!--  工作流模块  -->
-            <dependency>
-                <groupId>org.dromara</groupId>
-                <artifactId>ruoyi-workflow</artifactId>
-                <version>${revision}</version>
-            </dependency>
+            <!--  工作流模块（已移除：切片 #1） -->
 
             <!--  api模块  -->
             <dependency>
