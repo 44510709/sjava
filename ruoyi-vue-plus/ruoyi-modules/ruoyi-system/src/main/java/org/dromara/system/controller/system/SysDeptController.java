@@ -13,7 +13,6 @@ import org.dromara.common.web.core.BaseController;
 import org.dromara.system.domain.bo.SysDeptBo;
 import org.dromara.system.domain.vo.SysDeptVo;
 import org.dromara.system.service.ISysDeptService;
-import org.dromara.system.service.ISysPostService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +30,6 @@ import java.util.List;
 public class SysDeptController extends BaseController {
 
     private final ISysDeptService deptService;
-    private final ISysPostService postService;
 
     /**
      * 查询部门列表。
@@ -136,9 +134,6 @@ public class SysDeptController extends BaseController {
         }
         if (deptService.checkDeptExistUser(deptId)) {
             return R.warn("部门存在用户,不允许删除");
-        }
-        if (postService.countPostByDeptId(deptId) > 0) {
-            return R.warn("部门存在岗位,不允许删除");
         }
         deptService.checkDeptDataScope(deptId);
         return toAjax(deptService.deleteDeptById(deptId));

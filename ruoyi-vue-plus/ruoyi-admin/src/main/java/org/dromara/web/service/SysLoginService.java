@@ -18,7 +18,6 @@ import org.dromara.common.log.event.LoginInfoEvent;
 import org.dromara.common.mybatis.helper.DataPermissionHelper;
 import org.dromara.common.redis.utils.RedisUtils;
 import org.dromara.common.satoken.utils.LoginHelper;
-import org.dromara.system.api.domain.PostDTO;
 import org.dromara.system.api.domain.RoleDTO;
 import org.dromara.system.api.model.LoginUser;
 import org.dromara.system.domain.SysUser;
@@ -58,7 +57,6 @@ public class SysLoginService {
     private final ISysPermissionService permissionService;
     private final ISysRoleService roleService;
     private final ISysDeptService deptService;
-    private final ISysPostService postService;
     private final SysUserMapper userMapper;
 
 
@@ -130,9 +128,6 @@ public class SysLoginService {
             List<RoleDTO> roleDtos = BeanUtil.copyToList(roles, RoleDTO.class);
             loginUser.setRoles(roleDtos);
             loginUser.setDataScopeRoleMap(permissionService.getDataScopeRoleMap(roleDtos));
-        }, () -> {
-            List<SysPostVo> posts = postService.selectPostsByUserId(userId);
-            loginUser.setPosts(BeanUtil.copyToList(posts, PostDTO.class));
         });
         return loginUser;
     }

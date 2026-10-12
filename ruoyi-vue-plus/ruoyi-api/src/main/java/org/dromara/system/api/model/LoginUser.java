@@ -2,7 +2,6 @@ package org.dromara.system.api.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.dromara.system.api.domain.PostDTO;
 import org.dromara.system.api.domain.RoleDTO;
 
 import java.io.Serial;
@@ -118,11 +117,6 @@ public class LoginUser implements Serializable {
      * 数据权限角色映射 key 为权限码 value 为可参与数据权限计算的角色ID列表
      */
     private Map<String, List<Long>> dataScopeRoleMap;
-
-    /**
-     * 岗位对象
-     */
-    private List<PostDTO> posts;
 
     /**
      * 数据权限 当前角色ID

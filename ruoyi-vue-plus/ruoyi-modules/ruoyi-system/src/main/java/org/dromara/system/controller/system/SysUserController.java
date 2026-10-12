@@ -27,13 +27,11 @@ import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.common.web.core.BaseController;
 import org.dromara.system.api.model.LoginUser;
 import org.dromara.system.domain.bo.SysDeptBo;
-import org.dromara.system.domain.bo.SysPostBo;
 import org.dromara.system.domain.bo.SysRoleBo;
 import org.dromara.system.domain.bo.SysUserBo;
 import org.dromara.system.domain.vo.*;
 import org.dromara.system.listener.SysUserImportListener;
 import org.dromara.system.service.ISysDeptService;
-import org.dromara.system.service.ISysPostService;
 import org.dromara.system.service.ISysRoleService;
 import org.dromara.system.service.ISysUserService;
 import org.springframework.http.MediaType;
@@ -57,7 +55,6 @@ public class SysUserController extends BaseController {
 
     private final ISysUserService userService;
     private final ISysRoleService roleService;
-    private final ISysPostService postService;
     private final ISysDeptService deptService;
 
     /**
@@ -137,7 +134,7 @@ public class SysUserController extends BaseController {
      * 根据用户编号获取详细信息
      *
      * @param userId 用户ID
-     * @return 用户详情、角色与岗位信息
+     * @return 用户详情与角色信息
      */
     @SaCheckPermission("system:user:query")
     @GetMapping(value = {"/", "/{userId}"})
@@ -148,13 +145,6 @@ public class SysUserController extends BaseController {
             SysUserVo sysUser = userService.selectUserById(userId);
             userInfoVo.setUser(sysUser);
             userInfoVo.setRoleIds(roleService.selectRoleListByUserId(userId));
-            Long deptId = sysUser.getDeptId();
-            if (ObjectUtil.isNotNull(deptId)) {
-                SysPostBo postBo = new SysPostBo();
-                postBo.setDeptId(deptId);
-                userInfoVo.setPosts(postService.selectPostList(postBo));
-                userInfoVo.setPostIds(postService.selectPostListByUserId(userId));
-            }
         }
         SysRoleBo roleBo = new SysRoleBo();
         roleBo.setStatus(SystemConstants.NORMAL);

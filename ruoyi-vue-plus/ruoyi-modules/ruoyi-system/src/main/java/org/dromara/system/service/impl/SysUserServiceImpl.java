@@ -21,10 +21,8 @@ import org.dromara.common.satoken.utils.LoginHelper;
 import org.dromara.system.api.UserService;
 import org.dromara.system.api.domain.UserDTO;
 import org.dromara.system.domain.SysUser;
-import org.dromara.system.domain.SysUserPost;
 import org.dromara.system.domain.SysUserRole;
 import org.dromara.system.domain.bo.SysUserBo;
-import org.dromara.system.domain.vo.SysPostVo;
 import org.dromara.system.domain.vo.SysRoleVo;
 import org.dromara.system.domain.vo.SysUserExportVo;
 import org.dromara.system.domain.vo.SysUserVo;
@@ -50,9 +48,7 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     private final SysUserMapper userMapper;
     private final SysDeptMapper deptMapper;
     private final SysRoleMapper roleMapper;
-    private final SysPostMapper postMapper;
     private final SysUserRoleMapper userRoleMapper;
-    private final SysUserPostMapper userPostMapper;
 
     /**
      * 分页查询用户列表。
@@ -203,21 +199,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     }
 
     /**
-     * 查询用户所属岗位组
-     *
-     * @param userId 用户ID
-     * @return 结果
-     */
-    @Override
-    public String selectUserPostGroup(Long userId) {
-        List<SysPostVo> list = postMapper.selectPostsByUserId(userId);
-        if (CollUtil.isEmpty(list)) {
-            return StringUtils.EMPTY;
-        }
-        return StreamUtils.join(list, SysPostVo::getPostName);
-    }
-
-    /**
      * 校验用户账号是否唯一
      *
      * @param user 用户信息
@@ -303,8 +284,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
         // 新增用户信息
         int rows = userMapper.insert(sysUser);
         user.setUserId(sysUser.getUserId());
-        // 新增用户岗位关联
-        insertUserPost(user, false);
         // 新增用户与角色管理
         insertUserRole(user, false);
         return rows;
@@ -336,8 +315,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     public int updateUser(SysUserBo user) {
         // 新增用户与角色管理
         insertUserRole(user, true);
-        // 新增用户与岗位管理
-        insertUserPost(user, true);
         SysUser sysUser = MapstructUtils.convert(user, SysUser.class);
         // 防止错误更新后导致的数据误删除
         int flag = userMapper.updateById(sysUser);
@@ -419,40 +396,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     }
 
     /**
-     * 新增用户岗位信息
-     *
-     * @param user  用户对象
-     * @param clear 清除已存在的关联数据
-     */
-    private void insertUserPost(SysUserBo user, boolean clear) {
-        Long[] postIdArr = user.getPostIds();
-        if (ArrayUtil.isEmpty(postIdArr)) {
-            return;
-        }
-        List<Long> postIds = Arrays.asList(postIdArr);
-
-        // 校验是否有权限操作这些岗位（含数据权限控制）
-        if (postMapper.selectPostCount(postIds) != postIds.size()) {
-            throw new ServiceException("没有权限访问岗位的数据");
-        }
-
-        // 是否清除旧的用户岗位绑定
-        if (clear) {
-            userPostMapper.lambda().eq(SysUserPost::getUserId, user.getUserId()).delete();
-        }
-
-        // 构建用户岗位关联列表并批量插入
-        List<SysUserPost> list = StreamUtils.toList(postIds,
-            postId -> {
-                SysUserPost up = new SysUserPost();
-                up.setUserId(user.getUserId());
-                up.setPostId(postId);
-                return up;
-            });
-        userPostMapper.insertBatch(list);
-    }
-
-    /**
      * 新增用户角色信息
      *
      * @param userId  用户ID
@@ -508,8 +451,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
     public int deleteUserById(Long userId) {
         // 删除用户与角色关联
         userRoleMapper.lambda().eq(SysUserRole::getUserId, userId).delete();
-        // 删除用户与岗位表
-        userPostMapper.lambda().eq(SysUserPost::getUserId, userId).delete();
         // 防止更新失败导致的数据删除
         int flag = userMapper.deleteById(userId);
         if (flag < 1) {
@@ -534,8 +475,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
         List<Long> ids = List.of(userIds);
         // 删除用户与角色关联
         userRoleMapper.lambda().in(SysUserRole::getUserId, ids).delete();
-        // 删除用户与岗位表
-        userPostMapper.lambda().in(SysUserPost::getUserId, ids).delete();
         // 防止更新失败导致的数据删除
         int flag = userMapper.deleteByIds(ids);
         if (flag < 1) {
@@ -732,27 +671,6 @@ public class SysUserServiceImpl implements ISysUserService, UserService {
             .in(SysUser::getDeptId, deptIds)
             .voList();
         return BeanUtil.copyToList(list, UserDTO.class);
-    }
-
-    /**
-     * 通过岗位ID查询用户
-     *
-     * @param postIds 岗位ids
-     * @return 用户
-     */
-    @Override
-    public List<UserDTO> selectUsersByPostIds(Collection<Long> postIds) {
-        if (CollUtil.isEmpty(postIds)) {
-            return List.of();
-        }
-
-        // 通过岗位ID获取用户岗位信息
-        List<SysUserPost> userPosts = userPostMapper.lambda().in(SysUserPost::getPostId, postIds).list();
-
-        // 获取用户ID列表
-        Set<Long> userIds = StreamUtils.toSet(userPosts, SysUserPost::getUserId);
-
-        return this.selectListByIds(new ArrayList<>(userIds));
     }
 
     /**
