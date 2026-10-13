@@ -85,7 +85,8 @@
                 <profiles.active>local</profiles.active>
                 <logging.level>info</logging.level>
                 <monitor.username>ruoyi</monitor.username>
-                <monitor.password>123456</monitor.password>
+                <!-- 监控密码：通过环境变量 MONITOR_PWD 覆盖，默认 dev_pwd 仅用于本地开发 -->
+                <monitor.password>${env.MONITOR_PWD:-dev_pwd}</monitor.password>
             </properties>
         </profile>
         <profile>
@@ -95,7 +96,8 @@
                 <profiles.active>dev</profiles.active>
                 <logging.level>info</logging.level>
                 <monitor.username>ruoyi</monitor.username>
-                <monitor.password>123456</monitor.password>
+                <!-- 监控密码：通过环境变量 MONITOR_PWD 覆盖，默认 dev_pwd 仅用于本地开发 -->
+                <monitor.password>${env.MONITOR_PWD:-dev_pwd}</monitor.password>
             </properties>
             <activation>
                 <!-- 默认环境 -->
@@ -108,7 +110,8 @@
                 <profiles.active>prod</profiles.active>
                 <logging.level>warn</logging.level>
                 <monitor.username>ruoyi</monitor.username>
-                <monitor.password>123456</monitor.password>
+                <!-- 生产环境强制要求显式设置 MONITOR_PWD 环境变量（无默认值） -->
+                <monitor.password>${env.MONITOR_PWD}</monitor.password>
             </properties>
         </profile>
     </profiles>
