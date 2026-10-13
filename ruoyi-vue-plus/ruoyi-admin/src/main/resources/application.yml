@@ -107,7 +107,6 @@ security:
     - /error
     - /*/api-docs
     - /*/api-docs/**
-    - /warm-flow-ui/config
     - /snail-chat/**
     - /api/snail/chat/**
 
@@ -188,7 +187,6 @@ xss:
   # 排除链接
   excludeUrls:
     - /system/notice
-    - /warm-flow/save-json
 
 --- # 分布式锁 lock4j 全局配置
 lock4j:
