@@ -1684,7 +1684,7 @@ EXEC sp_addextendedproperty
      'TABLE', N'sj_job'
 GO
 
-INSERT INTO sj_job (namespace_id, biz_id, group_name, job_name, args_str, args_type, next_trigger_at, job_status, task_type, route_key, executor_type, executor_info, trigger_type, trigger_interval, block_strategy,executor_timeout, max_retry_times, parallel_num, retry_interval, bucket_index, resident, notify_ids, owner_id, labels, description, ext_attrs, deleted, create_dt, update_dt) VALUES (N'dev', N'demo-job', N'ruoyi_group', N'demo-job', null, 1, 1710344035622, 1, 1, 4, 1, N'testJobExecutor', 2, N'60', 1, 60, 3, 1, 1, 116, 0, N'', 1, N'', N'', N'', 0, getdate(), getdate())
+-- demo-job 种子已移除（#15：snak-job 框架示例 Job 同步清空）
 GO
 
 -- sj_job_log_message

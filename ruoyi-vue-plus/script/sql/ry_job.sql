@@ -317,7 +317,7 @@ CREATE TABLE `sj_job`
   AUTO_INCREMENT = 0
   DEFAULT CHARSET = utf8mb4 COMMENT ='任务信息';
 
-INSERT INTO `sj_job` VALUES (1, 'dev', 'demo-job', 'ruoyi_group', 'demo-job', null, 1, 1710344035622, 1, 1, 4, 1, 'testJobExecutor', 2, '60', 1, 60, 3, 1, 1, 116, 0, '', 1, '','', '', 0 , now(), now());
+-- demo-job 种子已移除（#15：snak-job 框架示例 Job 同步清空）
 
 CREATE TABLE `sj_job_log_message`
 (
