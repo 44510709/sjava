@@ -1,7 +1,8 @@
-# 测试脚手架使用手册 · P1（2026-10-13）
+# 测试脚手架使用手册 · P1+P2-A（2026-10-13）
 
 > 给 RuoYi-Vue-Plus 6.0.0 + Spring Boot 4.1.1 业务模块写测试时用。
-> P1 第一站以 `ruoyi-system/config` 为最小样板。
+> P1 第一站以 `ruoyi-system/config` 为最小样板；
+> P2-A 在 `ruoyi-system/menu` 验证模板可复制。
 
 ---
 
@@ -13,6 +14,12 @@
 | **Controller 路由 + 参数绑定 + JSON 响应** | `@WebMvcTest` + `@MockitoBean` | `src/test/java/.../controller/*Test.java` |
 | **集成测试**（启动容器，连真实 PG/Redis） | `@SpringBootTest(classes = SystemTestApplication.class)` | 同上 |
 | **Mapper**（真实 SQL） | `@SpringBootTest` + `@Autowired Mapper` | `src/test/java/.../mapper/*Test.java` |
+
+**当前已覆盖的样板（业务模块）**：
+- `ruoyi-system/config` — 6 测试（P1）
+- `ruoyi-system/menu` — 7 测试（P2-A）
+
+合计 **13 测试** 全过。
 
 ---
 
@@ -193,11 +200,11 @@ mvn test -DskipITs
 
 ## 6 · 接下来能做什么（路标）
 
-P1 第一站最小样板已就位（3 文件 + 0 行 pom 改动不影响其他模块）。后续按需：
+P1 + P2-A 已就位（menu 是第二站，验证 P1 模板可复制）。后续按需：
 
 | 任务 | 说明 | 工作量 |
 |---|---|---|
-| 给其他 3 个核心 Service 各写 1 套测试 | 用户/角色/菜单 | 1-2 小时 |
+| 给 user/role 各写 1 套测试 | 业务三大件剩下两件（user 4 mapper / role 4 mapper，Mock 复杂） | 2-3 小时 |
 | 集成测试骨架（`@SpringBootTest` + Testcontainers PG/Redis） | 验证 SQL/SaToken/缓存联动 | 半天 |
 | CI：GitHub Actions 跑 `mvn test` | 提交即反馈 | 1 小时 |
 | 静态检查：Spotless + Checkstyle | 代码风格门禁 | 半天 |
@@ -211,3 +218,4 @@ P1 第一站最小样板已就位（3 文件 + 0 行 pom 改动不影响其他�
 | 日期 | 变更 |
 |---|---|
 | 2026-10-13 | 首版（P1 配套：业务测试样板 + Spring Boot 4 模块拆坑记录） |
+| 2026-10-13 | + P2-A（menu 样板，验证 P1 模板可复制）+ 13 测试累计 |
