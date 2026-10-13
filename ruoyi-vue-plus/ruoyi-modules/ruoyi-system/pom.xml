@@ -100,6 +100,13 @@
             <artifactId>ruoyi-common-push</artifactId>
         </dependency>
 
+        <!-- WebMvc 测试切片（Spring Boot 4 拆分后的独立 artifact） -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webmvc-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
